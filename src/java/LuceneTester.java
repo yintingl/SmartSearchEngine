@@ -72,9 +72,8 @@ public class LuceneTester {
    
       System.out.println(hits.totalHits +
          " documents found. Time :" + (endTime - startTime));
-      //TokenStream tokens = null;
       String result = null;
-      
+
       for(ScoreDoc scoreDoc : hits.scoreDocs) {
          Document doc = searcher.getDocument(scoreDoc);
          String text = doc.get(LuceneConstants.CONTENTS);
@@ -88,7 +87,6 @@ public class LuceneTester {
             + doc.get(LuceneConstants.FILE_PATH));
             System.out.println(result);
             results.add(result);
-            //System.out.println("1212121212121 "+resultString);
       }
       searcher.close();
    }
@@ -100,8 +98,11 @@ public class LuceneTester {
    }
    
    public String getResult() {
-       StringBuilder sb = new StringBuilder();
-       
-       return results.get(results.size()-1);
+       StringBuilder sb = new StringBuilder(); 
+       for(String r:results) {
+           sb.append(r);
+           sb.append("\n");
+       }
+       return sb.toString();
    }
 }
