@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -28,7 +29,6 @@ public class LuceneTester {
    Indexer indexer;
    Searcher searcher;
    Analyzer analyzer;
-   public ArrayList<String> results = new ArrayList<String>();
 
    public static void main(String[] args) {
       LuceneTester tester;
@@ -58,13 +58,15 @@ public class LuceneTester {
          +(endTime-startTime)+" ms");		
    }
 
-   public void search(String searchQuery) throws IOException, ParseException{
+   public ArrayList<String> search(String searchQuery) throws IOException, ParseException{
 	  QueryParser parser = new QueryParser(Version.LUCENE_43,LuceneConstants.CONTENTS,this.analyzer);
 	  Query q = parser.parse(searchQuery);
 	  SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<mark>","</mark>");
 	  QueryScorer scorer = new QueryScorer(q,LuceneConstants.CONTENTS);
 	  Highlighter highlighter = new Highlighter(formatter,scorer);
 	  highlighter.setTextFragmenter(new SimpleSpanFragmenter(scorer));
+          ArrayList<String> results = new ArrayList<String>();
+          
       searcher = new Searcher(indexDir);
       long startTime = System.currentTimeMillis();
       TopDocs hits = searcher.search(searchQuery);
@@ -86,23 +88,16 @@ public class LuceneTester {
             System.out.println("File: "
             + doc.get(LuceneConstants.FILE_PATH));
             System.out.println(result);
-            results.add(result);
+            results.add(doc.get(LuceneConstants.FILE_PATH) + "," + result);
       }
       searcher.close();
+      return results;
    }
    
-   public void testSearch(String searchQuery) throws IOException, ParseException {
+   public ArrayList<String> testSearch(String searchQuery) throws IOException, ParseException {
        createIndex();
-       search(searchQuery);
-       System.out.println(results.get(0));
+       ArrayList<String> results = search(searchQuery);
+       return results;
    }
-   
-   public String getResult() {
-       StringBuilder sb = new StringBuilder(); 
-       for(String r:results) {
-           sb.append(r);
-           sb.append("\n");
-       }
-       return sb.toString();
-   }
+      
 }

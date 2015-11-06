@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,17 +55,19 @@ public class SearchEngineServlet extends HttpServlet {
         } else {
             try {
                 //lt.search(searchTerm);
-                lt.testSearch(searchTerm);
-                request.setAttribute("searchResult", lt.getResult());                              
+                ArrayList<String> results = lt.testSearch(searchTerm);
+                request.setAttribute("searchResult", results);              
                 nextView = "resultPage.jsp";
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        
+                    
         // Transfer control over the the correct "view"
         RequestDispatcher view = request.getRequestDispatcher(nextView);
         view.forward(request, response); 
+        
+    
     }
 
 }
