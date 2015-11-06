@@ -7,9 +7,17 @@
         <servlet-name>SearchEngineServlet</servlet-name>
         <servlet-class>SearchEngineServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserInputServlet</servlet-name>
+        <servlet-class>UserInputServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>SearchEngineServlet</servlet-name>
         <url-pattern>/SearchEngineServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInputServlet</servlet-name>
+        <url-pattern>/UserInputServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

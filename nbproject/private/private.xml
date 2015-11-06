@@ -5,7 +5,9 @@
         <group>
             <file>file:/Users/maywu/NetBeansProjects/SmartSearchEngine/web/resultPage.jsp</file>
             <file>file:/Users/maywu/NetBeansProjects/SmartSearchEngine/src/java/LuceneTester.java</file>
+            <file>file:/Users/maywu/NetBeansProjects/SmartSearchEngine/nbproject/build-impl.xml</file>
             <file>file:/Users/maywu/NetBeansProjects/SmartSearchEngine/src/java/SearchEngineServlet.java</file>
+            <file>file:/Users/maywu/NetBeansProjects/SmartSearchEngine/web/userInputPage.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -4,6 +4,8 @@
     Author     : maywu
 --%>
 
+
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
 <head>
@@ -64,9 +66,41 @@
   
 	<div class="panel panel-default">
                 <div class="panel-heading"><b>Files Returned</b></div>                
-                <div class="panel-body">                  
-                    <%= request.getAttribute("searchResult")%>
-		</div>
+                <div class="panel-body">  
+                    <% ArrayList<String> results = (ArrayList<String>) request.getAttribute("searchResult"); %>                   
+                    <% for (String r:results) { %>
+                    <tr>
+                        <td><%= r.split(",")[0] %></td> <br>
+                        <td><%= r.split(",")[1] %></td> <br>
+                    </tr>
+                    <% } %>                          
+                <br>
+		<p><b>Which are the top 3 most relevant articles?</b></p>
+			
+                <form class="form-inline" action="UserInputServlet">
+                    <div class="form-group">
+                        <div class="col-xs-4">
+                        <label for="article1">Rank 1</label>
+                        <input type="text" class="form-control" id="doc1" placeholder="(article number)">
+                        </div>
+                        <div class="col-xs-4">
+                        <label for="article2">Rank 2</label>
+                        <input type="text" class="form-control" id="doc2" placeholder="(article number)">
+                        </div>
+                        <div class="col-xs-4">
+                        <label for="article3">Rank 3</label>
+                        <input type="text" class="form-control" id="doc3" placeholder="(article number)">
+                        </div>
+		<br><br>
+                <button type="submit" class="btn btn-primary" onclick = "genFile()" id="submitBtn">Send Feedback</button>
+                <p id="demo"></p>
+                <script>
+                    function genFile() {
+                        document.getElementById("demo").innerHTML = "Hello World";
+                    }
+                </script>
+                </div>
+		</form>
         </div>
   </div>
   <div class="col-md-2"></div>
@@ -75,3 +109,5 @@
 <body>
 </body>
 </html>
+
+
