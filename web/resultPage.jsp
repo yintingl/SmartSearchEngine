@@ -1,7 +1,8 @@
 <%-- 
     Document   : searchPage
     Created on : Nov 3, 2015, 8:59:06 AM
-    Author     : maywu
+    Last Modified: Nov 8, 2015
+    Author     : maywu, yinting
 --%>
 
 
