@@ -82,7 +82,7 @@
                 <br>
 		<p><b>Which are the top 3 most relevant articles?</b></p>
 			
-                <form class="form-inline" action="UserInputServlet">
+                <form class="form-inline" action="Feedback">
                     <div class="form-group">
                         <div class="col-xs-4">
                         <label for="article1">Rank 1</label>
